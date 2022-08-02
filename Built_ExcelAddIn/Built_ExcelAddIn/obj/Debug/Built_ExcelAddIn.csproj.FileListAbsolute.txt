@@ -1,0 +1,10 @@
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\bin\Debug\Built_ExcelAddIn.dll
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\bin\Debug\Built_ExcelAddIn.pdb
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\bin\Debug\Microsoft.Office.Tools.Common.v4.0.Utilities.dll
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.csproj.AssemblyReference.cache
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.Properties.Resources.resources
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.csproj.GenerateResource.cache
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.csproj.CoreCompileInputs.cache
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.csproj.CopyComplete
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.dll
+C:\Users\JonathanMcCrary\source\repos\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.pdb
