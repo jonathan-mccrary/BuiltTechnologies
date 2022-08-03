@@ -1,41 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Xml.Linq;
-using Excel = Microsoft.Office.Interop.Excel;
-using Office = Microsoft.Office.Core;
-using Microsoft.Office.Tools.Excel;
-using WordsAPI.Implementation;
+﻿using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Built_ExcelAddIn
 {
     public partial class ThisAddIn
     {
-        private WordsUC myUserControl1;
+        private WordsUC wordsUc;
         private Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
-        WordsAPIWrapper wrapper = new WordsAPIWrapper();
+        private int lastEditedRow = 0;
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            //this.Application.WorkbookBeforeSave += new Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
+            wordsUc = new WordsUC();
+            myCustomTaskPane = this.CustomTaskPanes.Add(wordsUc, "Words Search");
+            myCustomTaskPane.Visible = true;
+            this.Application.WorkbookBeforeSave += new Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
         }
 
+        private void Application_WorkbookBeforeSave(Excel.Workbook Wb,
+            bool SaveAsUI,
+            ref bool Cancel)
+        {
+            int index = 1;
+            Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
+            Excel.Range firstRow = activeWorksheet.get_Range($"A{index}");
+            if (string.IsNullOrWhiteSpace((string)firstRow.Value2))
+            {
+                firstRow.Value2 = "Test";
+            }
 
+            index++;
+            //clear previous results
+            for (int i = index; i <= lastEditedRow; i++)
+            {
+                var nextRow = activeWorksheet.get_Range($"A{i}");
+                nextRow.Value2 = string.Empty;
+            }
 
-        //void Application_WorkbookBeforeSave(Excel.Workbook Wb, 
-        //    bool SaveAsUI, 
-        //    ref bool Cancel)
-        //{
-        //    Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
-        //    Excel.Range firstRow = activeWorksheet.get_Range("A1");
-        //    firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
-        //    Excel.Range newFirstRow = activeWorksheet.get_Range("A1");
-        //    newFirstRow.Value2 = "This text was added by using code";
-        //}
+            var synonymns = WordsUDF.GetWordSynonymsUDF((string)firstRow.Value2)?.Split(',') ?? new string[0];
+            for (int i = 0; i < synonymns.Length; i++)
+            {
+                var nextRow = activeWorksheet.get_Range($"A{i + index}");
+                nextRow.Value2 = synonymns[i];
+                lastEditedRow = i + index;
+            }
+        }
 
         #region VSTO generated code
 
@@ -48,7 +60,7 @@ namespace Built_ExcelAddIn
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
-        #endregion
+
+        #endregion VSTO generated code
     }
 }

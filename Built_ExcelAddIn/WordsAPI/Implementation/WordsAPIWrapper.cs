@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using WordsAPI.Models;
 
 namespace WordsAPI.Implementation
@@ -11,7 +10,7 @@ namespace WordsAPI.Implementation
     {
         #region Base Call
 
-        public async Task<WordData> GetWordData(string word, string function)
+        public WordData GetWordData(string word, string function)
         {
             WordData retVal = new WordData();
             var client = new HttpClient();
@@ -26,13 +25,19 @@ namespace WordsAPI.Implementation
                 },
             };
 
-            using (var response = await client.SendAsync(request))
+            using (var response = client.SendAsync(request))
             {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
-
-                retVal = JsonConvert.DeserializeObject<WordData>(body);
+                var result = response.Result;
+                //result.EnsureSuccessStatusCode();
+                if (result.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    retVal = new WordData();
+                }
+                else
+                {
+                    var body = result.Content.ReadAsStringAsync();
+                    retVal = JsonConvert.DeserializeObject<WordData>(body.Result);
+                }
             }
 
             return retVal;
@@ -42,34 +47,34 @@ namespace WordsAPI.Implementation
 
         #region Data Calls
 
-        public List<string> GetAntonymns(string word)
+        public List<string> GetAntonyms(string word)
         {
-            var wordData = GetWordData(word, "antonymns");
-            return wordData.Result.Antonymns;
+            var wordData = GetWordData(word, "antonyms");
+            return wordData.Antonyms;
         }
 
         public List<DefinitionData> GetDefinitions(string word)
         {
             var wordData = GetWordData(word, "definitions");
-            return wordData.Result.Definitions;
+            return wordData.Definitions;
         }
 
         public List<string> GetExamples(string word)
         {
             var wordData = GetWordData(word, "examples");
-            return wordData.Result.Examples;
+            return wordData.Examples;
         }
 
         public List<string> GetRhymes(string word)
         {
             var wordData = GetWordData(word, "rhymes");
-            return wordData.Result.Rhymes.AllRhymes;
+            return wordData.Rhymes.AllRhymes;
         }
 
         public List<string> GetSynonyms(string word)
         {
             var wordData = GetWordData(word, "synonyms");
-            return wordData.Result.Synonyms;
+            return wordData.Synonyms;
         }
 
         #endregion Data Calls

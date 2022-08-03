@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\RhymesData.cs" />
-    <Compile Include="Utils\Constants.cs" />
     <Compile Include="Implementation\WordsAPIWrapper.cs" />
     <Compile Include="Models\DefinitionData.cs" />
     <Compile Include="Models\WordData.cs" />

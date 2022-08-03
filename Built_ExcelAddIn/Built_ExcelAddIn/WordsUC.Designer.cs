@@ -36,7 +36,10 @@
             this.rbSynonyms = new System.Windows.Forms.RadioButton();
             this.rbExamples = new System.Windows.Forms.RadioButton();
             this.rbRhymes = new System.Windows.Forms.RadioButton();
-            this.rbAntonymns = new System.Windows.Forms.RadioButton();
+            this.rbAntonyms = new System.Windows.Forms.RadioButton();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.lblResults = new System.Windows.Forms.Label();
+            this.lbResults = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // txtWord
@@ -54,11 +57,11 @@
             this.lblWord.Size = new System.Drawing.Size(33, 13);
             this.lblWord.TabIndex = 1;
             this.lblWord.Text = "Word";
-            this.lblWord.Click += new System.EventHandler(this.label1_Click);
             // 
             // rbDefinitions
             // 
             this.rbDefinitions.AutoSize = true;
+            this.rbDefinitions.Checked = true;
             this.rbDefinitions.Location = new System.Drawing.Point(22, 71);
             this.rbDefinitions.Name = "rbDefinitions";
             this.rbDefinitions.Size = new System.Drawing.Size(74, 17);
@@ -66,7 +69,6 @@
             this.rbDefinitions.TabStop = true;
             this.rbDefinitions.Text = "Definitions";
             this.rbDefinitions.UseVisualStyleBackColor = true;
-            this.rbDefinitions.CheckedChanged += new System.EventHandler(this.rbDefinitions_CheckedChanged);
             // 
             // rbSynonyms
             // 
@@ -78,7 +80,6 @@
             this.rbSynonyms.TabStop = true;
             this.rbSynonyms.Text = "Synonyms";
             this.rbSynonyms.UseVisualStyleBackColor = true;
-            this.rbSynonyms.CheckedChanged += new System.EventHandler(this.rbSynonyms_CheckedChanged);
             // 
             // rbExamples
             // 
@@ -90,7 +91,6 @@
             this.rbExamples.TabStop = true;
             this.rbExamples.Text = "Examples";
             this.rbExamples.UseVisualStyleBackColor = true;
-            this.rbExamples.CheckedChanged += new System.EventHandler(this.rbExamples_CheckedChanged);
             // 
             // rbRhymes
             // 
@@ -102,25 +102,59 @@
             this.rbRhymes.TabStop = true;
             this.rbRhymes.Text = "Rhymes";
             this.rbRhymes.UseVisualStyleBackColor = true;
-            this.rbRhymes.CheckedChanged += new System.EventHandler(this.rbRhymes_CheckedChanged);
             // 
-            // rbAntonymns
+            // rbAntonyms
             // 
-            this.rbAntonymns.AutoSize = true;
-            this.rbAntonymns.Location = new System.Drawing.Point(22, 164);
-            this.rbAntonymns.Name = "rbAntonymns";
-            this.rbAntonymns.Size = new System.Drawing.Size(77, 17);
-            this.rbAntonymns.TabIndex = 6;
-            this.rbAntonymns.TabStop = true;
-            this.rbAntonymns.Text = "Antonymns";
-            this.rbAntonymns.UseVisualStyleBackColor = true;
-            this.rbAntonymns.CheckedChanged += new System.EventHandler(this.rbAntonymns_CheckedChanged);
+            this.rbAntonyms.AutoSize = true;
+            this.rbAntonyms.Location = new System.Drawing.Point(22, 164);
+            this.rbAntonyms.Name = "rbAntonyms";
+            this.rbAntonyms.Size = new System.Drawing.Size(71, 17);
+            this.rbAntonyms.TabIndex = 6;
+            this.rbAntonyms.TabStop = true;
+            this.rbAntonyms.Text = "Antonyms";
+            this.rbAntonyms.UseVisualStyleBackColor = true;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.Navy;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSearch.Location = new System.Drawing.Point(22, 188);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // lblResults
+            // 
+            this.lblResults.AutoSize = true;
+            this.lblResults.Location = new System.Drawing.Point(22, 227);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(42, 13);
+            this.lblResults.TabIndex = 8;
+            this.lblResults.Text = "Results";
+            // 
+            // lbResults
+            // 
+            this.lbResults.FormattingEnabled = true;
+            this.lbResults.HorizontalScrollbar = true;
+            this.lbResults.Location = new System.Drawing.Point(22, 243);
+            this.lbResults.Name = "lbResults";
+            this.lbResults.Size = new System.Drawing.Size(127, 264);
+            this.lbResults.TabIndex = 9;
+            this.lbResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbResults_KeyDown);
             // 
             // WordsUC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.rbAntonymns);
+            this.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.Controls.Add(this.lbResults);
+            this.Controls.Add(this.lblResults);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.rbAntonyms);
             this.Controls.Add(this.rbRhymes);
             this.Controls.Add(this.rbExamples);
             this.Controls.Add(this.rbSynonyms);
@@ -129,7 +163,7 @@
             this.Controls.Add(this.txtWord);
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "WordsUC";
-            this.Size = new System.Drawing.Size(647, 404);
+            this.Size = new System.Drawing.Size(172, 527);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,6 +178,9 @@
         private System.Windows.Forms.RadioButton rbSynonyms;
         private System.Windows.Forms.RadioButton rbExamples;
         private System.Windows.Forms.RadioButton rbRhymes;
-        private System.Windows.Forms.RadioButton rbAntonymns;
+        private System.Windows.Forms.RadioButton rbAntonyms;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Label lblResults;
+        private System.Windows.Forms.ListBox lbResults;
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Built_ExcelAddIn
@@ -15,35 +9,68 @@ namespace Built_ExcelAddIn
         public WordsUC()
         {
             InitializeComponent();
+            lbResults.Text = string.Empty;
+            lbResults.Items.Clear();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            lbResults.Items.Clear();
+            object[] results;
+            if (rbDefinitions.Checked)
+            {
+                lbResults.Items.Add("*Definitions*");
+                results = WordsUDF.GetWordDefinitions(txtWord.Text)?
+                    .Select(p => $"{p.PartOfSpeech}: {p.Definition}")?
+                    .ToArray() ?? new object[0];
+            }
+            else if (rbSynonyms.Checked)
+            {
+                lbResults.Items.Add("*Synonymns*");
+                results = WordsUDF.GetWordSynonyms(txtWord.Text)?
+                    .Select(p => $"{p}")?
+                    .ToArray() ?? new object[0];
+            }
+            else if (rbExamples.Checked)
+            {
+                lbResults.Items.Add("*Examples*");
+                results = WordsUDF.GetWordExamples(txtWord.Text)?
+                    .Select(p => $"{p}")?
+                    .ToArray() ?? new object[0];
+            }
+            else if (rbRhymes.Checked)
+            {
+                lbResults.Items.Add("*Rhymes*");
+                results = WordsUDF.GetWordRhymes(txtWord.Text)?
+                    .Select(p => $"{p}")?
+                    .ToArray() ?? new object[0];
+            }
+            else if (rbAntonyms.Checked)
+            {
+                lbResults.Items.Add("*Antonyms*");
+                results = WordsUDF.GetWordAntonyms(txtWord.Text)?
+                    .Select(p => $"{p}")?
+                    .ToArray() ?? new object[0];
+            }
+            else
+            {
+                results = new object[0];
+            }
 
+            if (results.Length == 0)
+            {
+                results = (new string[] { "--none found" });
+            }
+            lbResults.Items.AddRange(results);
         }
 
-        private void rbDefinitions_CheckedChanged(object sender, EventArgs e)
+        private void lbResults_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
-
-        private void rbSynonyms_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbExamples_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rbRhymes_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void rbAntonymns_CheckedChanged(object sender, EventArgs e)
-        {
-
+            if (e.Control == true && e.KeyCode == Keys.C)
+            {
+                string s = lbResults.SelectedItem.ToString();
+                Clipboard.SetData(DataFormats.StringFormat, s);
+            }
         }
     }
 }
