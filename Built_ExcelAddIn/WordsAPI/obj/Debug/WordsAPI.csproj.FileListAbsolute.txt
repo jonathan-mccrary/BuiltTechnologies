@@ -7,3 +7,4 @@ C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Wor
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.csproj.CopyComplete
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.dll
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.pdb
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\bin\Debug\WordsAPI.dll.config

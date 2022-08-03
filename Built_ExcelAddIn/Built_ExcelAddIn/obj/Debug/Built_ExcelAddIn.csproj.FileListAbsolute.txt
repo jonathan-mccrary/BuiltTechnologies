@@ -24,3 +24,5 @@ C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Bui
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.csproj.CopyComplete
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.dll
 C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.pdb
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Built_ExcelAddIn\bin\Debug\WordsAPI.dll.config
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\Built_ExcelAddIn\obj\Debug\Built_ExcelAddIn.WordsUC.resources

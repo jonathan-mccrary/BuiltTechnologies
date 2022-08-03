@@ -1,19 +1,26 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft;
-using Newtonsoft.Json;
 
 namespace WordsAPI.Models
 {
     public class WordData
     {
-        [JsonProperty("name")]
+        [JsonProperty("word")]
         public string Word { get; set; }
 
         [JsonProperty("definitions")]
         public List<DefinitionData> Definitions { get; set; }
+
+        [JsonProperty("synonyms")]
+        public List<string> Synonyms { get; set; }
+
+        [JsonProperty("examples")]
+        public List<string> Examples { get; set; }
+
+        [JsonProperty("rhymes")]
+        public RhymesData Rhymes { get; set; }
+
+        [JsonProperty("antonymns")]
+        public List<string> Antonymns { get; set; }
     }
 }

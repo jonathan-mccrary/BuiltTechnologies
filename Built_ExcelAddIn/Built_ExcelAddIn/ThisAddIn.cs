@@ -6,30 +6,36 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using WordsAPI.Implementation;
 
 namespace Built_ExcelAddIn
 {
     public partial class ThisAddIn
     {
+        private WordsUC myUserControl1;
+        private Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
+        WordsAPIWrapper wrapper = new WordsAPIWrapper();
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            this.Application.WorkbookBeforeSave += new Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
+            //this.Application.WorkbookBeforeSave += new Excel.AppEvents_WorkbookBeforeSaveEventHandler(Application_WorkbookBeforeSave);
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
         }
 
-        void Application_WorkbookBeforeSave(Excel.Workbook Wb, 
-            bool SaveAsUI, 
-            ref bool Cancel)
-        {
-            Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
-            Excel.Range firstRow = activeWorksheet.get_Range("A1");
-            firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
-            Excel.Range newFirstRow = activeWorksheet.get_Range("A1");
-            newFirstRow.Value2 = "This text was added by using code";
-        }
+
+
+        //void Application_WorkbookBeforeSave(Excel.Workbook Wb, 
+        //    bool SaveAsUI, 
+        //    ref bool Cancel)
+        //{
+        //    Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
+        //    Excel.Range firstRow = activeWorksheet.get_Range("A1");
+        //    firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
+        //    Excel.Range newFirstRow = activeWorksheet.get_Range("A1");
+        //    newFirstRow.Value2 = "This text was added by using code";
+        //}
 
         #region VSTO generated code
 
