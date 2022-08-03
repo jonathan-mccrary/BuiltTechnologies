@@ -1,0 +1,9 @@
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\bin\Debug\WordsAPI.dll
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\bin\Debug\WordsAPI.pdb
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.csproj.AssemblyReference.cache
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.csproj.CoreCompileInputs.cache
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.csproj.CopyComplete
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.dll
+C:\Users\JonathanMcCrary\Documents\GitHub\BuiltTechnologies\Built_ExcelAddIn\WordsAPI\obj\Debug\WordsAPI.pdb
