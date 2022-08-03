@@ -6,6 +6,6 @@
     <StartArguments>/x "Built_ExcelAddIn-AddIn64.xll"</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>

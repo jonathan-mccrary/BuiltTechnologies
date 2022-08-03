@@ -20,46 +20,37 @@ namespace Built_ExcelAddIn
             if (rbDefinitions.Checked)
             {
                 lbResults.Items.Add("*Definitions*");
-                results = WordsUDF.GetWordDefinitions(txtWord.Text)?
-                    .Select(p => $"{p.PartOfSpeech}: {p.Definition}")?
-                    .ToArray() ?? new object[0];
+                results = WordsUDF.GetWordDefinitions(txtWord.Text)?.Split('|') ?? new string[0];
             }
             else if (rbSynonyms.Checked)
             {
                 lbResults.Items.Add("*Synonymns*");
-                results = WordsUDF.GetWordSynonyms(txtWord.Text)?
-                    .Select(p => $"{p}")?
-                    .ToArray() ?? new object[0];
+                results = WordsUDF.GetWordSynonyms(txtWord.Text)?.Split('|') ?? new string[0];
             }
             else if (rbExamples.Checked)
             {
                 lbResults.Items.Add("*Examples*");
-                results = WordsUDF.GetWordExamples(txtWord.Text)?
-                    .Select(p => $"{p}")?
-                    .ToArray() ?? new object[0];
+                results = WordsUDF.GetWordExamples(txtWord.Text)?.Split('|') ?? new string[0];
             }
             else if (rbRhymes.Checked)
             {
                 lbResults.Items.Add("*Rhymes*");
-                results = WordsUDF.GetWordRhymes(txtWord.Text)?
-                    .Select(p => $"{p}")?
-                    .ToArray() ?? new object[0];
+                results = WordsUDF.GetWordRhymes(txtWord.Text)?.Split('|') ?? new string[0];
             }
             else if (rbAntonyms.Checked)
             {
                 lbResults.Items.Add("*Antonyms*");
-                results = WordsUDF.GetWordAntonyms(txtWord.Text)?
-                    .Select(p => $"{p}")?
-                    .ToArray() ?? new object[0];
+                results = WordsUDF.GetWordAntonyms(txtWord.Text)?.Split('|') ?? new string[0];
             }
             else
             {
                 results = new object[0];
             }
 
-            if (results.Length == 0)
+            if (results.Length == 0 
+                || (results.Length == 1 && (string)results[0] == string.Empty))
             {
-                results = (new string[] { "--none found" });
+                results = new string[] { "--none found" };
             }
             lbResults.Items.AddRange(results);
         }

@@ -6,7 +6,8 @@ namespace Built_ExcelAddIn
     {
         private WordsUC wordsUc;
         private Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
-        private int lastEditedRow = 0;
+        private int synonymsLastEditedRow = 0;
+        private int definitionsLastEditedRow = 0;
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
@@ -26,26 +27,50 @@ namespace Built_ExcelAddIn
         {
             int index = 1;
             Excel.Worksheet activeWorksheet = ((Excel.Worksheet)Application.ActiveSheet);
-            Excel.Range firstRow = activeWorksheet.get_Range($"A{index}");
-            if (string.IsNullOrWhiteSpace((string)firstRow.Value2))
+            Excel.Range a1 = activeWorksheet.get_Range($"A{index}");
+            if (string.IsNullOrWhiteSpace((string)a1.Value2))
             {
-                firstRow.Value2 = "Test";
+                a1.Value2 = "Test";
             }
-
             index++;
+
+            PopulateSynonyms(activeWorksheet, (string)a1.Value2, index);
+            PopulateDefinitions(activeWorksheet, (string)a1.Value2, index);
+        }
+
+        private void PopulateSynonyms(Excel.Worksheet activeWorksheet, string word, int index)
+        {
             //clear previous results
-            for (int i = index; i <= lastEditedRow; i++)
+            for (int i = index; i <= synonymsLastEditedRow; i++)
             {
                 var nextRow = activeWorksheet.get_Range($"A{i}");
                 nextRow.Value2 = string.Empty;
             }
 
-            var synonymns = WordsUDF.GetWordSynonymsUDF((string)firstRow.Value2)?.Split(',') ?? new string[0];
+            var synonymns = WordsUDF.GetWordSynonyms(word)?.Split('|') ?? new string[0];
             for (int i = 0; i < synonymns.Length; i++)
             {
                 var nextRow = activeWorksheet.get_Range($"A{i + index}");
                 nextRow.Value2 = synonymns[i];
-                lastEditedRow = i + index;
+                synonymsLastEditedRow = i + index;
+            }
+        }
+
+        private void PopulateDefinitions(Excel.Worksheet activeWorksheet, string word, int index)
+        {
+            //clear previous results
+            for (int i = index; i <= definitionsLastEditedRow; i++)
+            {
+                var nextRow = activeWorksheet.get_Range($"B{i}");
+                nextRow.Value2 = string.Empty;
+            }
+
+            var synonymns = WordsUDF.GetWordDefinitions(word)?.Split('|') ?? new string[0];
+            for (int i = 0; i < synonymns.Length; i++)
+            {
+                var nextRow = activeWorksheet.get_Range($"B{i + index}");
+                nextRow.Value2 = synonymns[i];
+                definitionsLastEditedRow = i + index;
             }
         }
 

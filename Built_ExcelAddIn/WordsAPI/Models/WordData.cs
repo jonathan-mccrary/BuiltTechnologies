@@ -23,7 +23,7 @@ namespace WordsAPI.Models
         [JsonProperty("rhymes")]
         public RhymesData Rhymes { get; set; }
 
-        [JsonProperty("antonymns")]
+        [JsonProperty("antonyms")]
         public List<string> Antonyms { get; set; }
     }
 }
